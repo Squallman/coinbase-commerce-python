@@ -5,6 +5,7 @@ import requests
 from coinbase_commerce.api_resources.charge import Charge
 from coinbase_commerce.api_resources.checkout import Checkout
 from coinbase_commerce.api_resources.event import Event
+from coinbase_commerce.api_resources.invoice import Invoice
 from coinbase_commerce.auth import APIAuth
 from coinbase_commerce.compat import quote
 from coinbase_commerce.compat import urljoin
@@ -49,6 +50,11 @@ class Client(object):
     def event(self):
         setattr(Event, '_api_client', self)
         return Event
+
+    @lazy_property
+    def invoice(self):
+        setattr(Invoice, '_api_client', self)
+        return Invoice
     # <----
 
     def _create_api_uri(self, *parts):
